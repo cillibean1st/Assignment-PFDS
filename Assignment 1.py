@@ -4,15 +4,37 @@ import pandas as pd
 
 
 # read data
-taxi_pool_df = pd.read_csv('TaxiRideShare .csv')
-taxi_pool_df.head()
-taxi_pool_df.info()
-taxi_pool_df.describe()
+df = pd.read_csv('TaxiRideShare .csv')
+df.head()
+df.info()
+df.describe()
 
 
 
 # cleaning
-taxi_pool_df = taxi_pool_df.drop(columns="timestamp")
-taxi_pool_df = taxi_pool_df.drop(columns="datetime")
+df = df.drop(columns="timestamp")
+df = df.drop(columns="datetime")
 
-taxi_pool_df = taxi_pool_df["source"].dropna()
+
+x = df["temperature"].mean()
+df["temperature"] = df["temperature"].fillna(x)
+
+x = df["windSpeed"].mean()
+df["windSpeed"] = df["windSpeed"].fillna(x)
+
+x = df["temperatureHigh"].mean()
+df["temperatureHigh"] = df["temperatureHigh"].fillna(x)
+
+x = df["pressure"].mean()
+df["pressure"] = df["pressure"].fillna(x)
+
+x = df["temperatureMin"].mean()
+df["temperatureMin"] = df["temperatureMin"].fillna(x)
+
+x = df["temperatureMax"].mean()
+df["temperatureMax"] = df["temperatureMax"].fillna(x)
+df = df.dropna()
+print(df.head())
+print(df.info())
+
+
