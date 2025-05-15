@@ -12,10 +12,11 @@ df.describe()
 
 
 # cleaning
+#Remove columns with Large missing values
 df = df.drop(columns="timestamp")
 df = df.drop(columns="datetime")
-
-
+df = df.drop(columns="price")
+# fill missing values
 x = df["temperature"].mean()
 df["temperature"] = df["temperature"].fillna(x)
 
@@ -33,8 +34,12 @@ df["temperatureMin"] = df["temperatureMin"].fillna(x)
 
 x = df["temperatureMax"].mean()
 df["temperatureMax"] = df["temperatureMax"].fillna(x)
+
+# Drop remaining empties
 df = df.dropna()
 print(df.head())
 print(df.info())
+
+# Measure Of central tendency
 
 
