@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import sklearn
 
 # read data
 df = pd.read_csv('TaxiRideShare .csv')
@@ -38,6 +39,7 @@ df = df.dropna()
 print(df.head())
 print(df.info())
 
+
 # Measure Of central tendency
 # hour
 print("Hour mean", df["hour"].mean())
@@ -52,7 +54,6 @@ print("Day min", df["day"].min())
 print("Day max", df["day"].max(), "\n \n")
 
 # month
-print("Month mean", df["month"].mean())
 print("Month median", df["month"].median(), "\n \n")
 
 # distance
@@ -72,3 +73,31 @@ print("Wind speed mean", df["windSpeed"].mean())
 print("Wind Speed median", df["windSpeed"].median())
 print("Wind Speed min", df["windSpeed"].min())
 print("Wind Speed max", df["windSpeed"].max(), "\n \n")
+
+# Plot Temperature vs distance
+x = df["temperature"]
+y = df["distance"]
+plt.scatter(x, y, label="Temperature", color='Red', s=50)
+plt.xlabel('Temperature')
+plt.ylabel('Distance')
+plt.title('Temperature vs Distance')
+plt.legend(loc="lower right")
+plt.show()
+
+#Plot Distance vs hour
+x2 = df["distance"]
+y2 = df["hour"]
+plt.scatter(x2, y2, label='Hour',color='Blue',s=50)
+plt.xlabel('Distance')
+plt.ylabel('Hour')
+plt.title('Distance vs Hour')
+plt.legend(loc="lower right")
+plt.show()
+
+# boxplot to show hours of use
+plt.boxplot(df["hour"])
+plt.title("Hours Box Plot")
+plt.show()
+
+
+
